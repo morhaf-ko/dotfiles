@@ -27,9 +27,6 @@ config.window_padding = {
 -- Tab Bar
 config.enable_tab_bar = false
 config.use_fancy_tab_bar = true
-config.hide_tab_bar_if_only_one_tab = false
-config.tab_bar_at_bottom = false
-config.tab_max_width = 32
 
 -- Cursor
 config.default_cursor_style = "BlinkingBar"
@@ -52,6 +49,15 @@ config.keys = {
 		key = "D",
 		mods = "CMD|SHIFT",
 		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+	},
+
+	{
+		key = "k",
+		mods = "CMD",
+		action = wezterm.action.Multiple({
+			wezterm.action.ClearScrollback("ScrollbackAndViewport"),
+			wezterm.action.SendKey({ key = "L", mods = "CTRL" }),
+		}),
 	},
 
 	-- Navigate panes
@@ -115,73 +121,6 @@ config.keys = {
 		key = "j",
 		mods = "CMD|SHIFT",
 		action = wezterm.action.AdjustPaneSize({ "Down", 5 }),
-	},
-
-	-- Zoom pane
-	{
-		key = "Enter",
-		mods = "CMD|SHIFT",
-		action = wezterm.action.TogglePaneZoomState,
-	},
-
-	-- New tab
-	{
-		key = "t",
-		mods = "CMD",
-		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
-	},
-
-	-- Navigate tabs
-	{
-		key = "Tab",
-		mods = "CTRL",
-		action = wezterm.action.ActivateTabRelative(1),
-	},
-	{
-		key = "Tab",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action.ActivateTabRelative(-1),
-	},
-
-	-- Quick tab selection
-	{
-		key = "1",
-		mods = "CMD",
-		action = wezterm.action.ActivateTab(0),
-	},
-	{
-		key = "2",
-		mods = "CMD",
-		action = wezterm.action.ActivateTab(1),
-	},
-	{
-		key = "3",
-		mods = "CMD",
-		action = wezterm.action.ActivateTab(2),
-	},
-	{
-		key = "4",
-		mods = "CMD",
-		action = wezterm.action.ActivateTab(3),
-	},
-	{
-		key = "5",
-		mods = "CMD",
-		action = wezterm.action.ActivateTab(4),
-	},
-
-	-- Clear scrollback (moved to avoid conflict with hjkl navigation)
-	{
-		key = "K",
-		mods = "CMD|SHIFT",
-		action = wezterm.action.ClearScrollback("ScrollbackAndViewport"),
-	},
-
-	-- Search
-	{
-		key = "f",
-		mods = "CMD",
-		action = wezterm.action.Search("CurrentSelectionOrEmptyString"),
 	},
 }
 
