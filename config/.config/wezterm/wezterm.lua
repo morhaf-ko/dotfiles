@@ -16,7 +16,7 @@ config.line_height = 1.2
 -- Window Appearance
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.85
-config.macos_window_background_blur = 20
+config.macos_window_background_blur = 10
 config.window_padding = {
 	left = 20,
 	right = 20,
